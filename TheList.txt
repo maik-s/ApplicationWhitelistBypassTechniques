@@ -35,6 +35,10 @@ https://www.defcon.org/images/defcon-21/dc-21-presentations/Bialek/DEFCON-21-Bia
     1. cmd.exe /k < script.txt
     2. cscript.exe //E:vbscript script.txt
     3. Get-Content script.txt | iex
-
+    
+9. Malicious Troubleshooting packs - MSDT.exe
+    Reference: http://cybersyndicates.com/2015/10/a-no-bull-guide-to-malicious-windows-trouble-shooting-packs-and-application-whitelist-bypass/
+    Thanks to @nberthaume, @Killswitch_GUI 
+    
 
 I'd love to hear other techniques
