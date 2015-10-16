@@ -40,5 +40,9 @@ https://www.defcon.org/images/defcon-21/dc-21-presentations/Bialek/DEFCON-21-Bia
     Reference: http://cybersyndicates.com/2015/10/a-no-bull-guide-to-malicious-windows-trouble-shooting-packs-and-application-whitelist-bypass/
     Thanks to @nberthaume, @Killswitch_GUI 
     
+10. InstallUtil.exe
+    A signed MS binary that loads assemblies and executes - One of the best.
+    Examples here: https://gist.github.com/subTee
+    
 
 I'd love to hear other techniques
