@@ -43,6 +43,10 @@ https://www.defcon.org/images/defcon-21/dc-21-presentations/Bialek/DEFCON-21-Bia
 10. InstallUtil.exe
     A signed MS binary that loads assemblies and executes - One of the best.
     Examples here: https://gist.github.com/subTee
-    
+
+11. Regsvcs/Regasm
+    See: https://gist.github.com/subTee/fb09ef511e592e6f7993
+    These 2 are Excellent.
+
 
 I'd love to hear other techniques
