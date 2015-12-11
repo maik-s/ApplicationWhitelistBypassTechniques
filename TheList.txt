@@ -10,7 +10,7 @@
 
 1. IEExec
 
-This technique may work in certain envirionments.  Its relies on the fact that many organizations trust executables signed
+This technique may work in certain environments.  Its relies on the fact that many organizations trust executables signed
 by Microsoft.  We can misuse this trust by launching a specially crafted .NET application. 
 Example Here: http://www.room362.com/blog/2014/01/16/application-whitelist-bypass-using-ieexec-dot-exe/
 
