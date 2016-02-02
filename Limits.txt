@@ -1,0 +1,76 @@
+Limits of Application Whitelisting
+
+2015/12/07 by Flo bitnuts.de
+
+If you are peeking through the scene you may have noticed that Application Whitelisting is currently under fire and security researchers found quite impressive ways to overcome the classic whitelisting approach - whether be it policy based or hash based. Information Security Analyst Casey Smith and SecConsult made a great job analyzing and bypassing whitelisting approaches in the last couple of months and weeks, so I heavily suggest that you check out their stuff.
+
+In a nutshell, most solutions fail in several aspects like: forgetting about interpreter and scripting languages, incomplete or bad user manuals that lead to wrong configuration, bad code quality that lead to exploit or bypass the whitelisting solutions, windows paths that are whitelisted and could be write accessed by attackers, etc. Especially interpreter and scripting languages are a very interesting way to attack an application whitelisting protected machine and often succeed if you one did not configure the whitelist tightly.
+
+We as security guys and hackers know that nothing is absolutely bullet proof, IT security is always a battle of the fittest and often looks like playing cat and mouse. Well, thus your IT security mitigation and defense strategies should always be layered. You should always have different protection strategies in place to jump in, where one dedicated solution may fail. Never stop always rethink your mitigation techniques, keep up to date and check out what the bad black- and white hats are doing.
+
+It hopefully was well known that classic whitelisting will fail when attackers can use (bytecode-) interpreters or reflective in-memory attacks to start malicious code. To avoid such attacks you should do more than just checking the executable intended to run. For example you can check who is calling what - I call this parent checking and implemented it into Tuersteher as well. So you are able to blacklist the browser such, that it cannot start a cmd.exe shell, or any scripting host. I have also implemented several kernel drivers that are able to check on the command line options an executable is going to be started (see command line scanner at Excubits). For example my driver can detect, that the browser wants to start cmd.exe with the /c flag, or that powershell.exe was called with a script from C:\Users\Florian\AppData\Local\Temp\evil.ps. For example you can whitelist powershell just for some well known (and really needed) command line parameters, and only from source files you know and trust. So an attacker is not able to start these security critical executables with command line options pointing malicious options and references (like malign scripts). I also use a memory protection driver that controls what process has access to the memory of another process. This helps to reduce the attack surface by exploits and other malicious executables that try to inject their code into another legit running application like explorer.exe, svchost.exe, etc.
+
+Well, I know, this will not block all attacks, it is a way to mitigate and makes an successful attack more complicated. There are still gaps like exploits that directly (reflective) load their malware (DLL) into the own exploited application's process. Personally I think that we will encounter more and more in-memory attacks in the near future as anti exploit techniques and protections tools will be armed against the malign stuff we currently see.
+
+I just do not want to blame on whitelisting because I still think it is a great way to mitigate against a whole bunch of basic attacks. If you are down with malware analysis you will confirm that most (~80-90%) of the attacks we see could be blocked by even simple application whitelisting, so you shall implement it. But you should also know the limits and see it as one mitigation out of a bunch of mitigations you need. It is not enough to install application whitelisting and you are done! There is more to do and more to review on a regular basis. IT Security is a moving process, it will never be enough to just install that super cool anti malware and exploit application, you should always keep track on what is going on in the scene and adapt regarding new developments.
+
+For example for now, do a quick start to enhance your current whitelisting configuration following the recommendations here:
+
+Blacklist all occurrences of powershell.exe if you do not use it regularely,
+Blacklist or remove all interpreters (e.g. python, perl, ...) if you do not use them,
+Blacklist or remove all debuggers,
+Only whitelist required software, move not used software to the blacklist, and
+If there is software you only use once a year put it onto the blacklist and then temporarily put it on the whitelist if you really need it for the dedicated task.
+Also blacklist the following applications (executables) if you do not need them:
+
+*InstallUtil*
+*Regsvcs*
+*RegAsm*
+*wusa*
+?:\$Recycle*
+*reg.exe
+*vssadmin.exe
+*aspnet_compiler.exe
+*csc.exe
+*jsc.exe
+*vbc.exe
+*ilasm.exe
+*MSBuild.exe
+*script.exe
+*journal.exe
+*msiexec.exe
+*bitsadmin*
+*iexpress.exe
+*mshta.exe
+*systemreset.exe
+*bcdedit.exe
+*mstsc.exe
+*powershell.exe
+*powershell_ise.exe
+*hh.exe
+*set.exe
+*setx.exe
+*InstallUtil.exe
+*IEExec.exe
+*DFsvc.exe
+*dfshim.dll
+*PresentationHost.exe
+C:\Windows\ADFS\*
+C:\Windows\Fonts\*
+C:\Windows\Minidump\*
+C:\Windows\Offline Web Pages\*
+C:\Windows\tracing\*
+C:\Windows\Tasks\*
+I also suggest that you restrict write access permissions on
+
+C:\Windows\ADFS\*
+C:\Windows\Fonts\*
+C:\Windows\Minidump\*
+C:\Windows\Offline Web Pages\*
+C:\Windows\tracing\*
+C:\Windows\Temp\*
+C:\Windows\Tasks\*
+C:\ProgramData\*
+such, that you - as a default/normal user - cannot copy (or write) files into one of these folders. Please note, ensure that Windows Update (or the Trusted Installer and Admin) are still able to write into these folders or you gonna end up in some trouble.
+
+If you have any questions or want to discuss. Well, I am open minded and happy to hear from you.
