@@ -1,12 +1,11 @@
 # The List
-#
-# As many organizations adopt a Whitelisting Strategy, this list seeks to compile known bypass techniques that can be used
-# by the security community.
-#
-# There are many various ways to WhiteList Applications
-# Future release will attempt to catalog what works against specific techniques.
 
-# Version .0.0.3
+## As many organizations adopt a Whitelisting Strategy, this list seeks to compile known bypass techniques that can be used by the security community.
+
+## There are many various ways to WhiteList Applications
+## Future release will attempt to catalog what works against specific techniques.
+
+### Version .0.0.3
 
 1. IEExec
 
